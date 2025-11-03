@@ -1,0 +1,153 @@
+@import "../../styles/variables";
+
+.land-enter {
+  opacity: 0;
+}
+
+.land-enter-active {
+  opacity: 1;
+  transition: all 500ms ease-in;
+}
+
+.land-exit {
+  opacity: 1;
+}
+
+.land-exit-active {
+  opacity: 0;
+  transition: all 500ms ease-in;
+}
+
+.Country {
+  display: inline-block;
+  margin: 0.5rem 1.5rem;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.country-title {
+  display: block;
+  font-size: 1.25rem;
+  color: $main-color;
+}
+
+.country-title__small {
+  font-size: 1rem;
+  letter-spacing: -0.06em;
+}
+
+.CountryLinks {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.CountryInfo__title,
+.CountryAdd {
+  margin: 0.5rem 0;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  background: $color-bg-opacity1;
+  border: solid 1px $primary-color;
+  border-radius: 5px;
+  color: #7a4d40;
+  cursor: pointer;
+}
+
+.CountryInfo__title:hover,
+.CountryAdd:hover {
+  background: $color-bg-opacity2;
+  color: #7a4d40;
+  transition: .7s;
+}
+
+.CountryInfo__title:active,
+.CountryAdd:active {
+  box-shadow: 0 0 2px #474848 inset;
+}
+
+.CountryLinks .active .CountryInfo__title {
+  background: rgba(234, 234, 234, 0.8);
+  color: $countries-links;
+  box-shadow: 0 0 2px #474848 inset;
+
+}
+
+.icon {
+  margin-bottom: -1rem;
+  padding-left: 0.5rem;
+  display: inline-block;
+  float: right;
+  right: 0;
+  transform: scale(1.2, 1.2);
+}
+
+.flag-frame {
+  display: block;
+  margin: 0 auto;
+  width: 14rem;
+  background-color: $color-bg-opacity1;
+  border: solid 1px $primary-color;
+  border-radius: 10px;
+}
+
+.flag-preview {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  width: auto;
+  height: 6rem;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.07);
+    transition: transform 0.5s ease-out;
+  }
+}
+
+.isFav {
+  border-color: $border-color1;
+  transition: 0.5s;
+}
+
+.globe_container {
+  margin: 0 auto 2rem;
+  //overflow: hidden;
+  text-align: center;
+}
+
+@media (max-width: 1080px) {
+  .Country {
+    margin: 0.75rem;
+    padding: 0;
+  }
+  .flag-frame {
+    width: 12rem;
+  }
+  .flag-preview {
+    height: 5.5rem;
+  }
+
+  .CountryInfo__title,
+  .CountryAdd {
+    margin: 0.5rem 0;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  .icon {
+    position: relative;
+    margin-bottom: -0.75rem;
+    padding-left: 0.5rem;
+    float: right;
+    top: -0.1rem;
+    right: 0;
+    transform: scale(1, 1);
+  }
+  .country-title {
+    font-size: 1.125rem;
+  }
+  .country-title__small {
+    font-size: 0.9rem;
+  }
+}
