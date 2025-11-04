@@ -1,6 +1,6 @@
 import { type TypedUseSelectorHook, useDispatch, useSelector, useStore } from "react-redux";
 import { configureStore } from '@reduxjs/toolkit';
-// import countriesReducer from './countriesSlice';
+import countriesReducer from './countriesSlice';
 // import favCountReducer from './favCountriesSlice';
 // import currUserReducer from './loginUsersSlice';
 // import isOpenInfoBarReducer from './isOpenInfoBarSlice';
@@ -8,7 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    // countries: countriesReducer,
+    countries: countriesReducer,
     // favCountries: favCountReducer,
     // currUser: currUserReducer,
     // openInfoBar: isOpenInfoBarReducer,
