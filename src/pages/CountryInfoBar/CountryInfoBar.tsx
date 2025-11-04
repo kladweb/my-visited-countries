@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
-import { CountryInfo } from '../components/CountryInfo/CountryInfo';
+import { CountryInfo } from '../../components/CountryInfo/CountryInfo.tsx';
 
 export const CountryInfoBar = () => {
   const appData = useAppSelector(state => state.countries.data);

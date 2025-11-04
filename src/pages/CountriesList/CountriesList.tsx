@@ -1,6 +1,6 @@
 import React, { RefObject, useLayoutEffect, useRef, useState } from "react";
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import Country from './Country';
+import Country from './Country.tsx';
 import { setOpenInfoBar } from "../../redux/isOpenInfoBarSlice";
 import { updateFavData } from "../../redux/favCountriesSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
