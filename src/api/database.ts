@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { child, get, ref, set } from "firebase/database";
 import { database } from "../firebase/firebase";
-import { updateFavData } from "../redux/favCountriesSlice";
-import { setAllowShowVisited, setUserName, setUserPhoto, setUserUID } from "../redux/loginUsersSlice";
-import { IAllUserCountries, updateAllUsersCountries } from "../redux/allUsersCountriesSlice";
-import { AppDispatch, RootState } from "../redux/store";
-import { updateCurrentData, updateData, updateLoadState } from "../redux/countriesSlice";
+// import { updateFavData } from "../redux/favCountriesSlice";
+// import { setAllowShowVisited, setUserName, setUserPhoto, setUserUID } from "../redux/loginUsersSlice";
+// import { IAllUserCountries, updateAllUsersCountries } from "../redux/allUsersCountriesSlice";
+// import { AppDispatch, RootState } from "../redux/store";
+// import { updateCurrentData, updateData, updateLoadState } from "../redux/countriesSlice";
 
 
 export const useDatabase = () => {

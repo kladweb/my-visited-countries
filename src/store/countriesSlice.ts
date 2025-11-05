@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { ICountries } from "../types/globalTypes";
 
 export interface IStateCountries {
-  dataLoadState: 0 | 1 | 2 | 3;
+  dataLoadState: "idle" | "loading" | "succeeded" | "failed";
   dataLoadError: string | null;
   page: string | null;
   data: ICountries[] | null;
@@ -11,7 +11,7 @@ export interface IStateCountries {
 }
 
 const initialState: IStateCountries = {
-  dataLoadState: 0, // 0 - not loaded, 1 - is loading, 2 - loaded, 3 - error
+  dataLoadState: "idle",
   dataLoadError: null,
   page: null,
   data: null,
@@ -20,7 +20,7 @@ const initialState: IStateCountries = {
 };
 
 export interface IStateLoadState {
-  state: 0 | 1 | 2 | 3;
+  state: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
