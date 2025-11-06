@@ -1,8 +1,20 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { ICountries } from "../types/globalTypes";
 
+export type LoadState = "idle" | "loading" | "succeeded" | "failed";
+
+export interface IStateLoadState {
+  state: LoadState;
+  error: string | null;
+}
+
+export interface IStateCurrentData {
+  data: ICountries[];
+  page?: string | null;
+}
+
 export interface IStateCountries {
-  dataLoadState: "idle" | "loading" | "succeeded" | "failed";
+  dataLoadState: LoadState;
   dataLoadError: string | null;
   page: string | null;
   data: ICountries[] | null;
@@ -18,16 +30,6 @@ const initialState: IStateCountries = {
   currentData: null,
   countPages: 0,
 };
-
-export interface IStateLoadState {
-  state: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
-}
-
-export interface IStateCurrentData {
-  data: ICountries[];
-  page?: string | null;
-}
 
 export const countriesSlice = createSlice({
   name: 'countries',
