@@ -1,8 +1,22 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { ICountries } from "../types/globalTypes";
+import { child, get, ref } from "firebase/database";
+import { database } from "../firebase/firebase.ts";
+
+export type LoadState = "idle" | "loading" | "succeeded" | "failed";
+
+export interface IStateLoadState {
+  state: LoadState;
+  error: string | null;
+}
+
+export interface IStateCurrentData {
+  data: ICountries[];
+  page?: string | null;
+}
 
 export interface IStateCountries {
-  dataLoadState: "idle" | "loading" | "succeeded" | "failed";
+  dataLoadState: LoadState;
   dataLoadError: string | null;
   page: string | null;
   data: ICountries[] | null;
@@ -19,15 +33,21 @@ const initialState: IStateCountries = {
   countPages: 0,
 };
 
-export interface IStateLoadState {
-  state: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
-}
-
-export interface IStateCurrentData {
-  data: ICountries[];
-  page?: string | null;
-}
+export const fetchCountries = createAsyncThunk<ICountries[]>(
+  "countries/fetchCountries",
+  async (_, {rejectWithValue}) => {
+    const dbRef = ref(database);
+    const countries: ICountries[] = [];
+    get(child(dbRef, 'countries')).then((snapshot) => {
+      if (snapshot.exists()) {
+        countries.push(...snapshot.val());
+      }
+    }).catch((error) => {
+      return rejectWithValue(error.message || "Ошибка загрузки данных из Firebase");
+    });
+    return countries;
+  }
+);
 
 export const countriesSlice = createSlice({
   name: 'countries',
@@ -52,7 +72,24 @@ export const countriesSlice = createSlice({
         }
       }
     }
-  }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCountries.pending, (state) => {
+        state.dataLoadState = "loading";
+        state.dataLoadError = null;
+      })
+      .addCase(fetchCountries.fulfilled, (state, action) => {
+        state.dataLoadState = "succeeded";
+        state.data = action.payload;
+        state.countPages = Math.ceil(action.payload.length / 10);
+      })
+      .addCase(fetchCountries.rejected, (state, action) => {
+        state.dataLoadState = "failed";
+        state.dataLoadError =
+          (action.payload as string) || action.error.message || "Не удалось загрузить данные";
+      });
+  },
 });
 
 export const {
