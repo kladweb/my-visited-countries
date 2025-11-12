@@ -1,0 +1,33 @@
+//colors
+$main-color: #fff;
+$primary-color: #eaeaea;
+$secondary-color: #afb8b8;
+$highlight-color: #61ff10;
+$accent-color: rgba(20, 161, 20, 0.78);
+$background-color1: rgba(144, 91, 75, 0.75);
+$background-color2: rgba(175, 184, 184, 0.24);
+$background-color3: rgba(147, 153, 153, 0.5);
+$color-bg-opacity0: rgba(0, 0, 0, 0.5);
+$color-bg-opacity1: rgba(234, 234, 234, 0.3);
+$color-bg-opacity2: rgba(234, 234, 234, 0.7);
+$color-bg-opacity3: rgba(234, 234, 234, 0.8);
+$color-light: #939999;
+$countries-links: #7a4d40;
+$border-color1: yellow;
+$color-button1: rgba(246, 173, 85, 0.8);
+$color-button2: rgba(225, 132, 11, 0.8);
+$color-button3: #f6ad55;
+$color-button4: #e1840b;
+$color-button5: #55362d;
+$color-menu1: #b1091d;
+$color-menu2: #f30e29;
+
+:export {
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
+  highlightColor: $highlight-color;
+  accentColor: $accent-color;
+  borderColor1: $border-color1;
+  colorButton: $color-button1;
+  colorMenu1: $color-menu1
+}

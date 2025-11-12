@@ -1,0 +1,60 @@
+@use"../../styles/theme";
+
+.PageLink {
+  position: relative;
+  margin-right: 1.5rem;
+  font-size: 1.3rem;
+  color: theme.$color-menu1;
+  text-decoration: none;
+  transition: color .5s;
+  vertical-align: middle;
+
+  &:hover {
+    color: theme.$color-menu2;
+  }
+}
+
+.ActivePageLink {
+  font-weight: bold;
+}
+
+.countFav {
+  position: absolute;
+  display: block;
+  width: 1.3rem;
+  height: 1.3rem;
+  top: -50%;
+  right: -20%;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  font-weight: 400;
+  color: theme.$border-color1;
+  border: solid 1px theme.$border-color1;
+  border-radius: 50%;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .PageLink {
+    margin: 0 0.5rem;
+    font-size: 1.25rem;
+  }
+  .countFav {
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .PageLink {
+    margin: 0.2rem;
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+  .countFav {
+    top: -75%;
+    right: -10%;
+    line-height: 1.25rem;
+  }
+}

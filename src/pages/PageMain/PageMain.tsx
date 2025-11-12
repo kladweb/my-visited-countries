@@ -6,7 +6,7 @@ export const PageMain = () => {
     <div className='CountryMain'>
       <div className='content'>
         {/*<CountryMain/>*/}
-        CountryMain
+        <h1>CountryMain</h1>
       </div>
     </div>
   );

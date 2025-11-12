@@ -1,4 +1,4 @@
-import { PagesLinks } from "../../../../country-guide/src/components/PagesLinks/PagesLinks";
+import { PagesLinks } from "../../components/PagesLinks/PagesLinks";
 
 export const Header = () => (
   <header className='main-header'>

@@ -1,0 +1,149 @@
+@use "../../styles/theme";
+
+$background-gradient: linear-gradient(theme.$background-color1, theme.$background-color1);
+//url(../../../public/img/background/background_01.jpg);
+
+.CountryList {
+  //min-height: calc(100vh - 4.75rem);
+  //background: $background-gradient no-repeat center center fixed;
+  //background-size: cover;
+
+  &::before {
+    content: '';
+    background: $background-gradient no-repeat center center / cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+  }
+}
+
+.CountryListName {
+  font-weight: bold;
+}
+
+.CountriesGroup {
+  width: auto;
+  padding: 2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.loading {
+  position: relative;
+  top: -5rem;
+  height: calc(100vh - 4.75rem);
+}
+
+.loading-status {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: theme.$secondary-color;
+}
+
+.navPages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: theme.$primary-color;
+
+  &-name {
+    margin: 0.75rem 0 0.25rem;
+  }
+
+  &-links {
+    display: block;
+    min-width: 1.5rem;
+    margin: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    text-decoration: none;
+    color: theme.$primary-color;
+    background: theme.$background-color2;
+    text-align: center;
+    border: 1px solid theme.$color-light;
+    border-radius: 10px;
+  }
+
+  .active {
+    border: 2px solid theme.$highlight-color;
+  }
+}
+
+.typeSorting {
+  margin: 0 auto;
+  padding-top: 1rem;
+  text-align: center;
+  color: theme.$primary-color;
+
+  &-name {
+    display: inline-block;
+    padding: 0 1rem;
+  }
+
+  select {
+    width: fit-content;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    color: theme.$primary-color;
+    background: none;
+    border: none;
+    appearance: none;
+  }
+
+  option {
+    font-size: 1rem;
+    color: theme.$main-color;
+    background: theme.$color-light;
+  }
+
+  select:focus,
+  option:focus {
+    outline: none;
+    background: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .CountriesGroup {
+    padding-bottom: 1rem;
+  }
+
+  .navPages {
+    padding-top: 2rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 775px) {
+  .CountriesGroup {
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .navPages {
+    padding-top: 3rem;
+    font-size: 0.75rem;
+
+    &-links {
+      min-width: 0.75rem;
+      border-radius: 7px;
+    }
+  }
+}
+
+@media (max-width: 360px) and (orientation: portrait) {
+  .CountriesGroup {
+    padding-bottom: 4rem;
+  }
+}
