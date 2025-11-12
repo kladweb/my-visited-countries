@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import './CountryInfo.scss';
-import { ICountries } from "../../types/globalTypes";
-import { useAppSelector } from "../../redux/store";
+import { type ICountries } from "../../types/globalTypes";
+// import { useAppSelector } from "../../store/store";
 
 export const CountryInfo: React.FC<ICountries> = ({code, name, capital, population, area}) => {
   const params = useParams();
   const page = params.part;
   const navigate = useNavigate();
-  const isOpenInfoBar = useAppSelector(state => state.openInfoBar.isOpenInfoBar);
+  // const isOpenInfoBar = useAppSelector(state => state.openInfoBar.isOpenInfoBar);
   //make indents between thousandths:
   const people = population.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
   const square = area.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
@@ -22,12 +22,12 @@ export const CountryInfo: React.FC<ICountries> = ({code, name, capital, populati
     }, 450);
   }
 
-  useEffect(() => {
-    if (isOpenInfoBar === 'close') {
-      closeInfo();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpenInfoBar]);
+  // useEffect(() => {
+  //   if (isOpenInfoBar === 'close') {
+  //     closeInfo();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isOpenInfoBar]);
 
   return (
     <div className={classInfo}>

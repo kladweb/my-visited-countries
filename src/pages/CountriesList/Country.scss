@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@use "../../styles/theme";
 
 .land-enter {
   opacity: 0;
@@ -28,7 +28,7 @@
 .country-title {
   display: block;
   font-size: 1.25rem;
-  color: $main-color;
+  color: theme.$main-color;
 }
 
 .country-title__small {
@@ -47,8 +47,8 @@
   margin: 0.5rem 0;
   padding: 0.2rem 0.5rem;
   font-size: 1rem;
-  background: $color-bg-opacity1;
-  border: solid 1px $primary-color;
+  background: theme.$color-bg-opacity1;
+  border: solid 1px theme.$primary-color;
   border-radius: 5px;
   color: #7a4d40;
   cursor: pointer;
@@ -56,7 +56,7 @@
 
 .CountryInfo__title:hover,
 .CountryAdd:hover {
-  background: $color-bg-opacity2;
+  background: theme.$color-bg-opacity2;
   color: #7a4d40;
   transition: .7s;
 }
@@ -68,7 +68,7 @@
 
 .CountryLinks .active .CountryInfo__title {
   background: rgba(234, 234, 234, 0.8);
-  color: $countries-links;
+  color: theme.$countries-links;
   box-shadow: 0 0 2px #474848 inset;
 
 }
@@ -86,8 +86,8 @@
   display: block;
   margin: 0 auto;
   width: 14rem;
-  background-color: $color-bg-opacity1;
-  border: solid 1px $primary-color;
+  background-color: theme.$color-bg-opacity1;
+  border: solid 1px theme.$primary-color;
   border-radius: 10px;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .isFav {
-  border-color: $border-color1;
+  border-color: theme.$border-color1;
   transition: 0.5s;
 }
 

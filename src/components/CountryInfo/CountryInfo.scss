@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@use "../../styles/theme";
 
 .country-info {
   width: 100%;
@@ -6,10 +6,10 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  color: $primary-color;
-  background: $countries-links;
-  border-top: solid 5px $color-light;
-  border-bottom: solid 5px $color-light;
+  color: theme.$primary-color;
+  background: theme.$countries-links;
+  border-top: solid 5px theme.$color-light;
+  border-bottom: solid 5px theme.$color-light;
   z-index: 10;
 }
 

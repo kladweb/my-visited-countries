@@ -18,16 +18,18 @@ const CountriesList = lazy(() => import("../pages/CountriesList/CountriesList")
 
 export const PagesRouter = () => {
   return (
-    <Routes>
-      <Route path="/" element={<PageMain/>}/>
-      <Route path="/countries" element={<PageCountries/>}>
-        <Route path=":part" element={<CountriesList/>}>
-          <Route path=":countid" element={<CountryInfoBar/>}/>
+    <main>
+      <Routes>
+        <Route path="/" element={<PageMain/>}/>
+        <Route path="/countries" element={<PageCountries/>}>
+          <Route path=":part" element={<CountriesList/>}>
+            <Route path=":countid" element={<CountryInfoBar/>}/>
+          </Route>
         </Route>
-      </Route>
-      <Route path="/about" element={<PageAbout/>}/>
-      <Route path="/travelers" element={<PageTravelers/>}/>
-      <Route path="/login" element={<PageLoginLogout/>}/>
-    </Routes>
+        <Route path="/about" element={<PageAbout/>}/>
+        <Route path="/travelers" element={<PageTravelers/>}/>
+        <Route path="/login" element={<PageLoginLogout/>}/>
+      </Routes>
+    </main>
   );
 };
