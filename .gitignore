@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 
 # misc
+env
 .env
 .env.local
 .env.development.local
