@@ -14,7 +14,7 @@ export const CountriesBasis = () => {
   const dataCountries = useAppSelector((state: RootState) => state.countries.data);
 
   const navPagesCode = () => {
-    let navPages = [];
+    const navPages = [];
     for (let i = 1; i <= countPages; i++) {
       navPages.push(
         <NavLink to={`/countries/${i}`} className='navPages-links' key={i}>
@@ -27,7 +27,7 @@ export const CountriesBasis = () => {
 
   function sortCountries(e: React.ChangeEvent<HTMLSelectElement>) {
     if (dataCountries) {
-      let newData = sortingCountries(e.target.value, dataCountries);
+      const newData = sortingCountries(e.target.value, dataCountries);
       dispatch(updateData(newData));
     }
   }

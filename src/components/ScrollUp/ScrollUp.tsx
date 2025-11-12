@@ -34,7 +34,7 @@ export const ScrollUp = () => {
   );
 
   function checkScroll() {
-    let scrolled = window.scrollY;
+    const scrolled = window.scrollY;
     if (coords < scrolled && !show) {
       changeShow(true);
     }
@@ -44,7 +44,7 @@ export const ScrollUp = () => {
   }
 
   function scrollPage() {
-    let scrolled = window.scrollY;
+    const scrolled = window.scrollY;
     window.scrollBy(0, -scrolled);
   }
 

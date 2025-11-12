@@ -6,10 +6,8 @@ interface ILoadingStatusProps {
 
 export const LoadingStatus: React.FC<ILoadingStatusProps> = ({loadStatus}) => {
   return (
-    <>
       <div className='loading'>
         <span className='loading-status'>{loadStatus}</span>
       </div>
-    </>
   )
 }

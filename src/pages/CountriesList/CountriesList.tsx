@@ -96,28 +96,26 @@ export const CountriesList = () => {
   );
 
   return (
-    <>
-      <div ref={parentRef} className='CountriesGroup'>
-        {isVisited &&
-          <>
-            {(countriesCurrent.length <= 0) &&
-              <p className='navPages'>The list of visited countries is empty...</p>
-            }
-          </>
-        }
-        {countriesElements}
-        <Outlet/>
-        {
-          isVisited &&
-          <div className='globe_container'>
-            <GlobeCountries
-              listCodes={countriesCurrent.map(country => country.code.toLowerCase())}
-              listNames={countriesCurrent.map(country => country.name.toLowerCase())}
-              parentWidth={parentWidth}
-            />
-          </div>
-        }
-      </div>
-    </>
+    <div ref={parentRef} className='CountriesGroup'>
+      {isVisited &&
+        <>
+          {(countriesCurrent.length <= 0) &&
+            <p className='navPages'>The list of visited countries is empty...</p>
+          }
+        </>
+      }
+      {countriesElements}
+      <Outlet/>
+      {
+        isVisited &&
+        <div className='globe_container'>
+          <GlobeCountries
+            listCodes={countriesCurrent.map(country => country.code.toLowerCase())}
+            listNames={countriesCurrent.map(country => country.name.toLowerCase())}
+            parentWidth={parentWidth}
+          />
+        </div>
+      }
+    </div>
   )
 }

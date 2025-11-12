@@ -1,7 +1,7 @@
 @use "../../styles/theme";
 
-$background-gradient: linear-gradient(theme.$background-color1, theme.$background-color1);
-//url(../../../public/img/background/background_01.jpg);
+$background-gradient: linear-gradient(theme.$background-color1, theme.$background-color1),
+url(../../assets/img/background/globe_warm.webp);
 
 .CountryList {
   //min-height: calc(100vh - 4.75rem);
