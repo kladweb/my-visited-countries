@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { ICountries } from "../types/globalTypes";
-import { child, get, ref } from "firebase/database";
+import { child, get, ref, set } from "firebase/database";
 import { database } from "../firebase/firebase.ts";
 
 export type LoadState = "idle" | "loading" | "succeeded" | "failed";
@@ -48,6 +48,33 @@ export const fetchCountries = createAsyncThunk<ICountries[]>(
     return countries;
   }
 );
+
+export const writeUserCountries = createAsyncThunk<
+  void,                // ничего не возвращаем (можно вернуть ICountries, если нужно)
+  ICountries,          // аргументом передаём объект страны
+  { rejectValue: string } // тип ошибки
+>(
+  "countries/saveCountry",
+  async (country, { rejectWithValue }) => {
+    try {
+      await set(ref(database, `users/${userId}/countries`), countries);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue("Ошибка сохранения данных в Firebase");
+    }
+  }
+);
+
+
+//   function writeUserCountries(countries: string | null) {
+//     if (userId) {
+//       set(ref(database, `users/${userId}/countries`), countries);
+//     } else {
+//       console.log('No auth !');
+//     }
+//   }
 
 export const countriesSlice = createSlice({
   name: 'countries',

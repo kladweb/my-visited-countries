@@ -1,10 +1,10 @@
-import React, { RefObject, useLayoutEffect, useRef, useState } from "react";
+import React, { type RefObject, useLayoutEffect, useRef, useState } from "react";
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Country from './Country.tsx';
-import { setOpenInfoBar } from "../../redux/isOpenInfoBarSlice";
-import { updateFavData } from "../../redux/favCountriesSlice";
-import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
-import { useDatabase } from "../../hooks/database";
+import { setOpenInfoBar } from "../../store/isOpenInfoBarSlice";
+import { updateFavData } from "../../store/favCountriesSlice";
+import { type RootState, useAppDispatch, useAppSelector } from "../../store/store";
+// import { useDatabase } from "../../hooks/database";
 import type { ICountries } from "../../types/globalTypes";
 import { GlobeCountries } from "../GlobeCountries/GlobeCountries";
 
@@ -12,7 +12,7 @@ export const CountriesList = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const params = useParams();
-  const {writeUserCountries} = useDatabase();
+  // const {writeUserCountries} = useDatabase();
   const favCountries: string[] = useAppSelector((state: RootState) => state.favCountries.data);
   const countriesObj = useAppSelector((state: RootState) => state.countries);
   const currUser = useAppSelector((state: RootState) => state.currUser.currUser);

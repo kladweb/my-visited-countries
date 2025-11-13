@@ -1,0 +1,160 @@
+@use "../../styles/theme";
+
+.CountryMain {
+  //padding-bottom: 2rem;
+  position: relative;
+  //min-height: calc(100dvh - 6.8rem);
+  //background-image: linear-gradient(rgba(147, 153, 153, 0.5), rgba(147, 153, 153, 0.5)), url(../../../public/img/background/background_02.jpg);
+  //background-repeat: no-repeat;
+  //background-position: center center;
+  //background-attachment: fixed;
+  //background-size: cover;
+
+  &::before {
+    content: '';
+    background: linear-gradient(theme.$background-color3, theme.$background-color3),
+    url(../../assets/img/background/map_world_neon.webp) no-repeat center center / cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+  }
+
+  h1 {
+    padding-top: 2rem;
+    font-size: 3rem;
+    color: theme.$highlight-color;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.5rem;
+    text-indent: 2rem;
+    color: theme.$primary-color;
+  }
+}
+
+.main-logo {
+  display: block;
+  margin: 3rem auto;
+  max-width: 40vmin;
+}
+
+.main-button {
+  display: block;
+  width: fit-content;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border: solid 5px theme.$primary-color;
+  border-radius: 16px;
+  text-align: center;
+  background-image: linear-gradient(theme.$color-button3, theme.$color-button4);
+  /*background-image: linear-gradient(#f6ad55, #e1840b);*/
+}
+
+.main-button:hover {
+  background-image: linear-gradient(theme.$color-button4, theme.$color-button4);
+  border: solid 5px theme.$color-bg-opacity3;
+}
+
+.main-button__name {
+  font-size: 1.5rem;
+  color: theme.$main-color;
+}
+
+@media (max-width: 1080px) {
+  .CountryMain h1 {
+    padding-top: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .main-logo {
+    display: inline-block;
+    margin: 1rem 3rem;
+    padding: 0 2rem;
+    max-width: 15%;
+  }
+
+  .CountryMain p {
+    display: inline-block;
+    padding: 1rem;
+    width: 60%;
+    text-align: justify;
+    vertical-align: top;
+    font-size: 1.5rem;
+  }
+
+  .main-button__name {
+    font-size: 1.25rem;
+  }
+
+  .main-button {
+    margin: 0.75rem auto;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .CountryMain h1 {
+    font-size: 2rem;
+  }
+
+  .main-logo {
+    margin: 0;
+    padding: 0 3rem;
+    max-width: 15%;
+  }
+
+  .CountryMain p {
+    display: inline-block;
+    padding: 1rem;
+    width: 65%;
+    text-align: justify;
+    vertical-align: top;
+    font-size: 1.25rem;
+  }
+
+  .main-button__name {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .CountryMain h1 {
+    padding-top: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .main-logo {
+    display: block;
+    margin: 3rem auto;
+    max-width: 40vmin;
+  }
+
+  .CountryMain p {
+    font-size: 1.5rem;
+    width: auto;
+  }
+
+  .main-button__name {
+    font-size: 1.25rem;
+  }
+
+  .main-button {
+    margin: 2rem auto;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+  .CountryMain h1 {
+    font-size: 2rem;
+  }
+
+  .CountryMain p {
+    font-size: 1.25rem;
+  }
+}
