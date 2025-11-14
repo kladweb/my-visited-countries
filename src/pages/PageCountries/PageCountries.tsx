@@ -3,7 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 // import { updateCurrentData } from '../../store/countriesSlice.ts';
 // import { CountriesBasis } from '../../components/CountriesBasis/CountriesBasis.tsx';
 // import { LoadingStatus } from '../../components/LoadingStatus/LoadingStatus.tsx';
-// import { useAppDispatch, useAppSelector } from "../../store/store.ts";
+import { useAppDispatch, useAppSelector } from "../../store/store.ts";
+import { fetchCountries } from "../../store/countriesSlice.ts";
+import { CountriesBasis } from "../../components/CountriesBasis/CountriesBasis.tsx";
 // import { useDatabase } from "../hooks/database";
 
 export const PageCountries = () => {
@@ -11,8 +13,8 @@ export const PageCountries = () => {
   const navigate = useNavigate();
   // const {readAllCountries} = useDatabase();
   const page = params.part;
-  // const dispatch = useAppDispatch();
-  // const countries = useAppSelector(state => state.countries);
+  const dispatch = useAppDispatch();
+  const countries = useAppSelector(state => state.countries);
   // const favCountries = useAppSelector(state => state.favCountries);
 
   /**
@@ -25,8 +27,11 @@ export const PageCountries = () => {
       if (!page) {
         navigate('/countries/all');
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
+
+  useEffect(() => {
+    dispatch(fetchCountries());
+  }, [dispatch]);
 
   // useEffect(
   //   () => {
@@ -47,21 +52,23 @@ export const PageCountries = () => {
 
   return (
     <div className='CountryList'>
-      This is the countries, ha-ha-ha...
-      {/*<div className='content'>*/}
-      {/*  {(countries.dataLoadState === 0) &&*/}
-      {/*    <LoadingStatus loadStatus='no data'/>*/}
-      {/*  }*/}
-      {/*  {(countries.dataLoadState === 1) &&*/}
-      {/*    <LoadingStatus loadStatus='loading...'/>*/}
-      {/*  }*/}
-      {/*  {(countries.dataLoadState === 2) &&*/}
-      {/*    <CountriesBasis/>*/}
-      {/*  }*/}
-      {/*  {(countries.dataLoadState === 3) &&*/}
-      {/*    <LoadingStatus loadStatus={'error ' + countries.dataLoadError}/>*/}
-      {/*  }*/}
-      {/*</div>*/}
+      <div className='content'>
+        {(countries.dataLoadState === "idle") &&
+          "дадзеных няма, бо, бляць нiхто iх не загрузiу, курва"
+          // <LoadingStatus loadStatus='no data'/>
+        }
+        {(countries.dataLoadState === "loading") &&
+          "дадзеные яшчэ iдуць"
+          // <LoadingStatus loadStatus='loading...'/>
+        }
+        {(countries.dataLoadState === "succeeded") &&
+          <CountriesBasis/>
+        }
+        {(countries.dataLoadState === "failed") &&
+          "тут бляць памылка"
+          // <LoadingStatus loadStatus={'error ' + countries.dataLoadError}/>
+        }
+      </div>
     </div>
   );
 }

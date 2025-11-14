@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { Header } from "./components/Header/Header.tsx";
 import { store } from './store/store';
 import { PagesRouter } from "./router/PagesRouter.tsx";
+import './styles/app.scss';
 
 function App() {
 
