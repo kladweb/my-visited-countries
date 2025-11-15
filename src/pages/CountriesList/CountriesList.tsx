@@ -6,16 +6,17 @@ import { updateFavData } from "../../store/favCountriesSlice";
 import { type RootState, useAppDispatch, useAppSelector } from "../../store/store";
 // import { useDatabase } from "../../hooks/database";
 import type { ICountries } from "../../types/globalTypes";
-import { GlobeCountries } from "../GlobeCountries/GlobeCountries";
+import { GlobeCountries } from "../../components/GlobeCountries/GlobeCountries.tsx";
+import { writeUserCountries } from "../../store/countriesSlice.ts";
 
 export const CountriesList = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const params = useParams();
-  // const {writeUserCountries} = useDatabase();
   const favCountries: string[] = useAppSelector((state: RootState) => state.favCountries.data);
   const countriesObj = useAppSelector((state: RootState) => state.countries);
   const currUser = useAppSelector((state: RootState) => state.currUser.currUser);
+  const userId = currUser ? currUser.id : null;
   const countriesAll = countriesObj.data;
   const countries: ICountries[] = (countriesObj.currentData) ? countriesObj.currentData : [];
   const favCountriesObj: ICountries[] = (countriesAll) ?
@@ -66,7 +67,9 @@ export const CountriesList = () => {
         newData.push(code);
       }
       dispatch(updateFavData(newData));
-      writeUserCountries(JSON.stringify(newData));
+      if (userId) {
+        dispatch(writeUserCountries({userId, countries: JSON.stringify(newData)}));
+      }
     } else {
       navigate('/login');
     }
