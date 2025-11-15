@@ -50,12 +50,12 @@ export const fetchCountries = createAsyncThunk<ICountries[]>(
 );
 
 export const writeUserCountries = createAsyncThunk<
-  void,                // ничего не возвращаем (можно вернуть ICountries, если нужно)
-  ICountries,          // аргументом передаём объект страны
+  void,
+  { userId: string; countries: string },
   { rejectValue: string } // тип ошибки
 >(
   "countries/saveCountry",
-  async (country, { rejectWithValue }) => {
+  async ({userId, countries}, {rejectWithValue}) => {
     try {
       await set(ref(database, `users/${userId}/countries`), countries);
     } catch (error: unknown) {
