@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from "../../store/store.ts";
 import { fetchCountries } from "../../store/countriesSlice.ts";
 import { CountriesBasis } from "../../components/CountriesBasis/CountriesBasis.tsx";
+import { LoadingStatus } from "../../components/LoadingStatus/LoadingStatus.tsx";
 // import { useDatabase } from "../hooks/database";
 
 export const PageCountries = () => {
@@ -54,19 +55,16 @@ export const PageCountries = () => {
     <div className='CountryList'>
       <div className='content'>
         {(countries.dataLoadState === "idle") &&
-          "дадзеных няма, бо, бляць нiхто iх не загрузiу, курва"
-          // <LoadingStatus loadStatus='no data'/>
+          <LoadingStatus loadStatus='no data'/>
         }
         {(countries.dataLoadState === "loading") &&
-          "дадзеные яшчэ iдуць"
-          // <LoadingStatus loadStatus='loading...'/>
+          <LoadingStatus loadStatus='loading...'/>
         }
         {(countries.dataLoadState === "succeeded") &&
           <CountriesBasis/>
         }
         {(countries.dataLoadState === "failed") &&
-          "тут бляць памылка"
-          // <LoadingStatus loadStatus={'error ' + countries.dataLoadError}/>
+          <LoadingStatus loadStatus={'error ' + countries.dataLoadError}/>
         }
       </div>
     </div>

@@ -8,6 +8,7 @@ import { type RootState, useAppDispatch, useAppSelector } from "../../store/stor
 import type { ICountries } from "../../types/globalTypes";
 import { GlobeCountries } from "../../components/GlobeCountries/GlobeCountries.tsx";
 import { writeUserCountries } from "../../store/countriesSlice.ts";
+// import { loginUserSlice } from "../../store/loginUsersSlice.ts";
 
 export const CountriesList = () => {
   const navigate = useNavigate();
