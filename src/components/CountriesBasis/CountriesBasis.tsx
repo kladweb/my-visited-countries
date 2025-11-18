@@ -15,7 +15,6 @@ export const CountriesBasis = () => {
 
   const navPagesCode = () => {
     const navPages = [];
-    console.log("countPages: ", countPages);
     for (let i = 1; i <= countPages; i++) {
       navPages.push(
         <NavLink to={`/countries/${i}`} className='navPages-links' key={i}>

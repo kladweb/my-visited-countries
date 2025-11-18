@@ -67,15 +67,6 @@ export const writeUserCountries = createAsyncThunk<
   }
 );
 
-
-//   function writeUserCountries(countries: string | null) {
-//     if (userId) {
-//       set(ref(database, `users/${userId}/countries`), countries);
-//     } else {
-//       console.log('No auth !');
-//     }
-//   }
-
 export const countriesSlice = createSlice({
   name: 'countries',
   initialState,

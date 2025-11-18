@@ -1,6 +1,6 @@
 import { PagesLinks } from "../PagesLinks/PagesLinks.tsx";
-import "../../assets/img/shared/logo.webp";
-import logoPic from "../../assets/img/shared/logo.avif";
+// import "../../assets/img/shared/logo.webp";
+import logoPic from "@/assets/img/shared/logo.avif";
 
 
 export const Header = () => (
