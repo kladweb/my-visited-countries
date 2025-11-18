@@ -38,7 +38,7 @@ export const fetchCountries = createAsyncThunk<ICountries[]>(
   async (_, {rejectWithValue}) => {
     const dbRef = ref(database);
     const countries: ICountries[] = [];
-    get(child(dbRef, 'countries')).then((snapshot) => {
+    await get(child(dbRef, 'countries')).then((snapshot) => {
       if (snapshot.exists()) {
         countries.push(...snapshot.val());
       }
@@ -50,12 +50,12 @@ export const fetchCountries = createAsyncThunk<ICountries[]>(
 );
 
 export const writeUserCountries = createAsyncThunk<
-  void,                // ничего не возвращаем (можно вернуть ICountries, если нужно)
-  ICountries,          // аргументом передаём объект страны
-  { rejectValue: string } // тип ошибки
+  void,
+  { userId: string; countries: string },
+  { rejectValue: string }
 >(
-  "countries/saveCountry",
-  async (country, { rejectWithValue }) => {
+  "countries/writeUserCountries",
+  async ({userId, countries}, {rejectWithValue}) => {
     try {
       await set(ref(database, `users/${userId}/countries`), countries);
     } catch (error: unknown) {
@@ -108,6 +108,7 @@ export const countriesSlice = createSlice({
       })
       .addCase(fetchCountries.fulfilled, (state, action) => {
         state.dataLoadState = "succeeded";
+        // console.log("action.payload: ", action.payload);
         state.data = action.payload;
         state.countPages = Math.ceil(action.payload.length / 10);
       })

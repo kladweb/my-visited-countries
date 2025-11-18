@@ -1,4 +1,4 @@
-@import "theme";
+@use "theme.module";
 
 * {
   margin: 0;
@@ -21,8 +21,8 @@ html {
 .main-header {
   position: fixed;
   width: 100%;
-  background-color: $color-light;
-  box-shadow: 0 0 1.5rem 0 $secondary-color;
+  background-color: theme.$color-light;
+  box-shadow: 0 0 1.5rem 0 theme.$secondary-color;
   font-size: 1rem;
   z-index: 50;
 }
@@ -42,7 +42,7 @@ html {
   padding: 0 1rem;
   font-size: 2em;
   font-weight: 600;
-  color: $highlight-color;
+  color: theme.$highlight-color;
   vertical-align: middle;
 }
 
@@ -60,7 +60,7 @@ main {
 }
 
 .flags-list {
-  background: $secondary-color;
+  background: theme.$secondary-color;
 }
 
 @media (max-width: 900px) {
