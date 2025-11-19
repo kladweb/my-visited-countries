@@ -1,0 +1,30 @@
+@use "../../styles/theme.module";
+
+.loginButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: 1;
+    transition: opacity .3s;
+  }
+}
+
+.google-logo, .google-span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.google-span {
+  margin: 0 0.5rem;
+  font-size: 2rem;
+  font-weight: 400;
+  color: theme.$highlight-color;
+}

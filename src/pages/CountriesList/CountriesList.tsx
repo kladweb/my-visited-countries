@@ -51,7 +51,7 @@ export const CountriesList = () => {
       changeShowStar(!showStar);
       setTimeout(() => {
         changeShowCountry(true);
-      }, 100);
+      }, 0);
     } else toggleFav(code, showStar, changeShowStar);
   }
   const toggleFav = function (
