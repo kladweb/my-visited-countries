@@ -1,0 +1,34 @@
+@use "../../styles/theme.module";
+
+.loginMenu {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: theme.$color-menu1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .5s;
+
+  &:hover {
+    color: theme.$color-menu2;
+  }
+}
+
+.logoutMenu {
+  position: absolute;
+  transform: translate(-85%, 120%);
+}
+
+@media (max-width: 600px) {
+  .loginMenu {
+    margin: 0 0.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .loginMenu {
+    margin: 0.2rem;
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+}

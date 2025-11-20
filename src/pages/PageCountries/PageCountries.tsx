@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 // import { CountriesBasis } from '../../components/CountriesBasis/CountriesBasis.tsx';
 // import { LoadingStatus } from '../../components/LoadingStatus/LoadingStatus.tsx';
 import { useAppDispatch, useAppSelector } from "../../store/store.ts";
-import { fetchCountries } from "../../store/countriesSlice.ts";
+import { fetchCountries, updateCurrentData } from "../../store/countriesSlice.ts";
 import { CountriesBasis } from "../../components/CountriesBasis/CountriesBasis.tsx";
 import { LoadingStatus } from "../../components/LoadingStatus/LoadingStatus.tsx";
 // import { useDatabase } from "../hooks/database";
@@ -16,7 +16,7 @@ export const PageCountries = () => {
   const page = params.part;
   const dispatch = useAppDispatch();
   const countries = useAppSelector(state => state.countries);
-  // const favCountries = useAppSelector(state => state.favCountries);
+  const favCountries = useAppSelector(state => state.favCountries);
 
   /**
    in this project, the "countries" page does not exist, so we immediately go to the "countries/all" page. It would be
@@ -44,12 +44,12 @@ export const PageCountries = () => {
   //     // eslint-disable-next-line react-hooks/exhaustive-deps
   //   }, []);
 
-  // useEffect(() => {
-  //   if (countries.data && countries.dataLoadState === 2) {
-  //     dispatch(updateCurrentData({page: page, data: countries.data}));
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [page, countries.data, favCountries.data]);
+  useEffect(() => {
+    if (countries.data && countries.dataLoadState === "succeeded") {
+      dispatch(updateCurrentData({page: page, data: countries.data}));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, countries.data, favCountries.data]);
 
   return (
     <div className='CountryList'>
