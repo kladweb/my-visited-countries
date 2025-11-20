@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { Travelers } from "../components/Travelers/Travelers";
-import { useAppDispatch } from "../redux/store";
-import { useDatabase } from "../hooks/database";
+import { Travelers } from "../../components/Travelers/Travelers";
+import { useAppDispatch } from "../../store/store";
+import { useDatabase } from "../../api/database";
 
 export const PageTravelers = () => {
   const {readAllUsers} = useDatabase();

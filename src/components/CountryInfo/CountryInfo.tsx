@@ -19,7 +19,7 @@ export const CountryInfo: React.FC<ICountries> = ({code, name, capital, populati
     changeClassInfo('country-info hide');
     setTimeout(() => {
       navigate(`/countries/${page}`);
-    }, 330);
+    }, 150);
   }
 
   useEffect(() => {
