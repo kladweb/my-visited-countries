@@ -10,6 +10,7 @@ import { useDatabase } from "../../api/database";
 import firebase from "firebase/compat/app";
 import type { ICurrUser } from "../../types/globalTypes";
 import '../../components/Travelers/travelers.scss';
+import { UserPage } from "../../components/UserPage/UserPage.tsx";
 
 export const PageLoginLogout = () => {
   type User = firebase.User;
@@ -34,6 +35,7 @@ export const PageLoginLogout = () => {
   const loginGoogle = function () {
     signInWithPopup(auth, provider)
       .then((result) => {
+        console.log("result: ", result);
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential?.accessToken;
         const getUser = auth.currentUser as User;
@@ -89,11 +91,10 @@ export const PageLoginLogout = () => {
     <div className='travelers'>
       <div className='content'>
         {(currUser) ?
-          <div>USER PAGE</div>
-          // <UserPage
-          //   logoutGoogle={logoutGoogle}
-          //   userName={userName}
-          // />
+          <UserPage
+            logoutGoogle={logoutGoogle}
+            userName={userName}
+          />
           :
           <Login loginGoogle={loginGoogle}/>
         }

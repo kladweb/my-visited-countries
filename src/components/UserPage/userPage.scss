@@ -1,0 +1,68 @@
+@use "../../styles/theme.module";
+
+.userNameWrapper{
+  margin: 2rem auto 3rem;
+  text-align: center;
+  height: 2.5rem;
+}
+
+.currentUserName {
+  display: inline-block;
+  width: fit-content;
+  font-size: 2rem;
+  font-weight: 500;
+  color: theme.$border-color1;
+  cursor: text;
+  /*color: #b1091d;*/
+}
+
+.isAllowShowVisited {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.shareInput, .shareDescription {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.shareInput {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0 0.5rem;
+  accent-color: theme.$accent-color;
+
+  &:not(:checked) {
+    opacity: 0.2;
+  }
+}
+
+.shareDescription {
+  font-size: 1.5rem;
+  color: theme.$primary-color;
+}
+
+.logoutButton {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: theme.$highlight-color;
+  background: theme.$color-menu1;
+  border: 2px solid theme.$color-menu1;
+  border-radius: 0.8rem;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: 1;
+    transition: opacity .3s;
+  }
+}
+
+.logoutClear {
+  font-size: 1.2rem;
+}

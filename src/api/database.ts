@@ -5,7 +5,7 @@ import { updateFavData } from "../store/favCountriesSlice";
 import { setAllowShowVisited, setUserName, setUserPhoto, setUserUID } from "../store/loginUsersSlice";
 import { type IAllUserCountries, updateAllUsersCountries } from "../store/allUsersCountriesSlice";
 import { type AppDispatch, type RootState } from "../store/store";
-import { updateCurrentData, updateData, updateLoadState } from "../store/countriesSlice";
+// import { updateCurrentData, updateData, updateLoadState } from "../store/countriesSlice";
 
 
 export const useDatabase = () => {
@@ -53,7 +53,7 @@ export const useDatabase = () => {
           dispatch(updateFavData([]));
         }
       }).catch((error) => {
-        // console.error(error);
+        console.error(error);
       });
     } else {
       console.log('No auth !');
