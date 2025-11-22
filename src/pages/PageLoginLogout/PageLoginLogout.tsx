@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import { auth } from "../../firebase/firebase";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { setCurrUser, setUserName, setUserPhoto } from "../../store/loginUsersSlice";
 import { updateFavData } from "../../store/favCountriesSlice";
 import { Login } from "../../components/Login/Login";
-import { UserPage } from "../components/UserPage/UserPage";
-// import { useDatabase } from "../hooks/database";
+// import { UserPage } from "../components/UserPage/UserPage";
+import { useDatabase } from "../../api/database";
 import firebase from "firebase/compat/app";
-import User = firebase.User;
-import type { ICurrUser } from "../types/globalTypes";
-import '../components/Travelers/travelers.scss';
+import type { ICurrUser } from "../../types/globalTypes";
+import '../../components/Travelers/travelers.scss';
+import { UserPage } from "../../components/UserPage/UserPage.tsx";
 
 export const PageLoginLogout = () => {
+  type User = firebase.User;
   const dispatch = useAppDispatch();
   const {writeUserName, writeUserPhoto} = useDatabase();
   const currUser = useAppSelector(state => state.currUser.currUser);
@@ -34,6 +35,7 @@ export const PageLoginLogout = () => {
   const loginGoogle = function () {
     signInWithPopup(auth, provider)
       .then((result) => {
+        console.log("result: ", result);
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential?.accessToken;
         const getUser = auth.currentUser as User;

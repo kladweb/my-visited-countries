@@ -1,0 +1,12 @@
+@use "../../styles/theme.module";
+
+.inputName {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: theme.$border-color1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
