@@ -40,10 +40,10 @@ export const useDatabase = () => {
   //   });
   // }
 
-  function readUserCountries(dispatch: AppDispatch) {
+  async function readUserCountries(dispatch: AppDispatch) {
     if (userId) {
       const dbRef = ref(database);
-      get(child(dbRef, `users/${userId}/countries`)).then((snapshot) => {
+      await get(child(dbRef, `users/${userId}/countries`)).then((snapshot) => {
         if (snapshot.exists()) {
           const dataString = snapshot.val();
           const data = (dataString === null) ? [] : JSON.parse(dataString);
@@ -125,7 +125,6 @@ export const useDatabase = () => {
           if (userUID && userUIDCurrent !== userUID) {
             dispatch(setUserUID(userUID));
             writeUserUID(userUID);
-            console.log("ШЛЯПА")
           } else {
             dispatch(setUserUID(userUIDCurrent));
           }

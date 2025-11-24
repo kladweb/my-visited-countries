@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { ICountries } from "../types/globalTypes";
 import { child, get, ref, set } from "firebase/database";
-import { database } from "../firebase/firebase.ts";
+import { database } from "../firebase/firebase";
 
 export type LoadState = "idle" | "loading" | "succeeded" | "failed";
 

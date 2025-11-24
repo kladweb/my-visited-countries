@@ -1,5 +1,6 @@
 import ReactGlobe from 'react-globe.gl';
 import React, { useLayoutEffect, useRef, useState } from "react";
+import globeImage from "../../assets/img/shared/earth-day.webp";
 import theme from '../../styles/_theme.module.scss';
 
 interface IGlobeProps {
@@ -17,7 +18,6 @@ export const GlobeCountries: React.FC<IGlobeProps> = ({parentWidth, listCodes, l
     fetch('/datasets/ne_110m_admin_0_countries.geojson')
       .then(res => res.json())
       .then(data => {
-        // console.log(data);
         setPolygons(data.features);
       });
   }, [parentWidth]);
@@ -33,12 +33,12 @@ export const GlobeCountries: React.FC<IGlobeProps> = ({parentWidth, listCodes, l
           listNames.includes(d.properties.BRK_NAME.toLowerCase());
         const isAntarctica = d.properties.ISO_A2.toLowerCase() === 'aq' ||
           d.properties.BRK_NAME.toLowerCase() === 'aq';
-        return isVisited ? theme.$colorMenu1 : isAntarctica ? theme.$primaryColor : theme.$accentColor;
+        return isVisited ? theme.colorMenu1 : isAntarctica ? theme.primaryColor : theme.accentColor;
       }}
-      polygonSideColor={() => theme.$colorButton}
-      polygonStrokeColor={() => theme.$colorButton}
+      polygonSideColor={() => theme.colorButton}
+      polygonStrokeColor={() => theme.colorButton}
       polygonAltitude={() => 0.02}
-      globeImageUrl={"/img/shared/earth-day.jpg"}
+      globeImageUrl={globeImage}
       // bumpImageUrl="/img/shared/earth-topology.png"
       backgroundColor={'rgba(0,0,0,0)'}
       labelsData={polygons}
