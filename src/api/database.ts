@@ -13,13 +13,14 @@ export const useDatabase = () => {
   const userId = currUser ? currUser.id : null;
   const userUID = currUser ? currUser.uid : null;
 
-  function writeUserCountries(countries: string | null) {
-    if (userId) {
-      set(ref(database, `users/${userId}/countries`), countries);
-    } else {
-      console.log('No auth !');
-    }
-  }
+  // function writeUserCountries(countries: string | null) {
+  //   console.log("USER ID: ", userId);
+  //   if (userId) {
+  //     set(ref(database, `users/${userId}/countries`), countries);
+  //   } else {
+  //     console.log('No auth !');
+  //   }
+  // }
 
   // function readAllCountries(dispatch: AppDispatch) {
   //   dispatch(updateLoadState({state: 1, error: null}));
@@ -186,7 +187,7 @@ export const useDatabase = () => {
 
   return {
     // readAllCountries,
-    writeUserCountries,
+    // writeUserCountries,
     readUserCountries,
     writeUserPermissionVisited,
     readUserPermissionVisited,
