@@ -75,10 +75,11 @@ export const countriesSlice = createSlice({
       state.dataLoadState = action.payload.state;
       state.dataLoadError = action.payload.error;
     },
-    updateData: (state, action: PayloadAction<ICountries[]>) => {
+    updateData: (state, action: PayloadAction<ICountries[] | null>) => {
       state.data = action.payload;
-      // state.countPages = (Array.isArray(action.payload)) ? Math.ceil(action.payload.length / 10) : 0;
-      state.countPages = Math.ceil(action.payload.length / 10);
+      if (action.payload) {
+        state.countPages = Math.ceil(action.payload.length / 10);
+      }
     },
     updateCurrentData: (state, action: PayloadAction<IStateCurrentData>) => {
       if (action.payload.page === 'all') {
@@ -99,7 +100,6 @@ export const countriesSlice = createSlice({
       })
       .addCase(fetchCountries.fulfilled, (state, action) => {
         state.dataLoadState = "succeeded";
-        // console.log("action.payload: ", action.payload);
         state.data = action.payload;
         state.countPages = Math.ceil(action.payload.length / 10);
       })

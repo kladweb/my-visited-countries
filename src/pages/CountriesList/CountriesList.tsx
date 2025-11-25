@@ -6,7 +6,7 @@ import { updateFavData } from "../../store/favCountriesSlice";
 import { type RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import type { ICountries } from "../../types/globalTypes";
 import { GlobeCountries } from "../../components/GlobeCountries/GlobeCountries.tsx";
-import { writeUserCountries } from "../../store/countriesSlice.ts";
+import { writeUserCountries } from "../../store/countriesSlice";
 // import { useDatabase } from "../../api/database.ts";
 // import { loginUserSlice } from "../../store/loginUsersSlice.ts";
 
