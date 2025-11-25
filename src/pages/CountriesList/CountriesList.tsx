@@ -4,10 +4,10 @@ import Country from './Country.tsx';
 import { setOpenInfoBar } from "../../store/isOpenInfoBarSlice";
 import { updateFavData } from "../../store/favCountriesSlice";
 import { type RootState, useAppDispatch, useAppSelector } from "../../store/store";
-// import { useDatabase } from "../../hooks/database";
 import type { ICountries } from "../../types/globalTypes";
 import { GlobeCountries } from "../../components/GlobeCountries/GlobeCountries.tsx";
 import { writeUserCountries } from "../../store/countriesSlice.ts";
+// import { useDatabase } from "../../api/database.ts";
 // import { loginUserSlice } from "../../store/loginUsersSlice.ts";
 
 export const CountriesList = () => {
@@ -69,6 +69,8 @@ export const CountriesList = () => {
       }
       dispatch(updateFavData(newData));
       if (userId) {
+        console.log("ПРОВЕРКА JSON: ", JSON.stringify(newData));
+        console.log("USER ID: ", userId);
         dispatch(writeUserCountries({userId, countries: JSON.stringify(newData)}));
       }
     } else {

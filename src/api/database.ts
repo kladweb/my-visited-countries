@@ -13,13 +13,14 @@ export const useDatabase = () => {
   const userId = currUser ? currUser.id : null;
   const userUID = currUser ? currUser.uid : null;
 
-  function writeUserCountries(countries: string | null) {
-    if (userId) {
-      set(ref(database, `users/${userId}/countries`), countries);
-    } else {
-      console.log('No auth !');
-    }
-  }
+  // function writeUserCountries(countries: string | null) {
+  //   console.log("USER ID: ", userId);
+  //   if (userId) {
+  //     set(ref(database, `users/${userId}/countries`), countries);
+  //   } else {
+  //     console.log('No auth !');
+  //   }
+  // }
 
   // function readAllCountries(dispatch: AppDispatch) {
   //   dispatch(updateLoadState({state: 1, error: null}));
@@ -40,10 +41,10 @@ export const useDatabase = () => {
   //   });
   // }
 
-  function readUserCountries(dispatch: AppDispatch) {
+  async function readUserCountries(dispatch: AppDispatch) {
     if (userId) {
       const dbRef = ref(database);
-      get(child(dbRef, `users/${userId}/countries`)).then((snapshot) => {
+      await get(child(dbRef, `users/${userId}/countries`)).then((snapshot) => {
         if (snapshot.exists()) {
           const dataString = snapshot.val();
           const data = (dataString === null) ? [] : JSON.parse(dataString);
@@ -125,7 +126,6 @@ export const useDatabase = () => {
           if (userUID && userUIDCurrent !== userUID) {
             dispatch(setUserUID(userUID));
             writeUserUID(userUID);
-            console.log("ШЛЯПА")
           } else {
             dispatch(setUserUID(userUIDCurrent));
           }
@@ -187,7 +187,7 @@ export const useDatabase = () => {
 
   return {
     // readAllCountries,
-    writeUserCountries,
+    // writeUserCountries,
     readUserCountries,
     writeUserPermissionVisited,
     readUserPermissionVisited,
