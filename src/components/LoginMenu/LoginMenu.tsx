@@ -4,10 +4,11 @@ import { useDatabase } from "../../api/database";
 import { Avatar } from "../Avatar/Avatar";
 import './loginMenu.scss';
 import { type ICurrUser } from "../../types/globalTypes";
+import { fetchUserCountries } from "../../store/favCountriesSlice.ts";
 
 export const LoginMenu = () => {
   const dispatch = useAppDispatch();
-  const {readUserCountries, readUserPermissionVisited, readUserName, readUserPhoto, readUserUID} = useDatabase();
+  const {readUserPermissionVisited, readUserName, readUserPhoto, readUserUID} = useDatabase();
   const currUser: ICurrUser | null = useAppSelector(state => state.currUser.currUser);
   const userName = useAppSelector(state => state.currUser.userName);
   const currUserName = (currUser) ? (userName ? userName : currUser.displayName) : '';
@@ -15,7 +16,7 @@ export const LoginMenu = () => {
   useEffect(
     () => {
       if (currUser) {
-        readUserCountries(dispatch);
+        dispatch(fetchUserCountries({userId: currUser.id}));
         readUserPermissionVisited(dispatch);
         readUserName(dispatch);
         readUserPhoto(dispatch);

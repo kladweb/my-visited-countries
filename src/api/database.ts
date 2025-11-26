@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { child, get, ref, set } from "firebase/database";
 import { database } from "../firebase/firebase";
-import { updateFavData } from "../store/favCountriesSlice";
+// import { updateFavData } from "../store/favCountriesSlice";
 import { setAllowShowVisited, setUserName, setUserPhoto, setUserUID } from "../store/loginUsersSlice";
 import { type IAllUserCountries, updateAllUsersCountries } from "../store/allUsersCountriesSlice";
 import { type AppDispatch, type RootState } from "../store/store";
@@ -41,25 +41,25 @@ export const useDatabase = () => {
   //   });
   // }
 
-  async function readUserCountries(dispatch: AppDispatch) {
-    if (userId) {
-      const dbRef = ref(database);
-      await get(child(dbRef, `users/${userId}/countries`)).then((snapshot) => {
-        if (snapshot.exists()) {
-          const dataString = snapshot.val();
-          const data = (dataString === null) ? [] : JSON.parse(dataString);
-          dispatch(updateFavData(data));
-        } else {
-          console.log("No data available");
-          dispatch(updateFavData([]));
-        }
-      }).catch((error) => {
-        console.error(error);
-      });
-    } else {
-      console.log('No auth !');
-    }
-  }
+  // async function readUserCountries(dispatch: AppDispatch) {
+  //   if (userId) {
+  //     const dbRef = ref(database);
+  //     await get(child(dbRef, `users/${userId}/countries`)).then((snapshot) => {
+  //       if (snapshot.exists()) {
+  //         const dataString = snapshot.val();
+  //         const data = (dataString === null) ? [] : JSON.parse(dataString);
+  //         dispatch(updateFavData(data));
+  //       } else {
+  //         console.log("No data available");
+  //         dispatch(updateFavData([]));
+  //       }
+  //     }).catch((error) => {
+  //       console.error(error);
+  //     });
+  //   } else {
+  //     console.log('No auth !');
+  //   }
+  // }
 
   function writeUserPermissionVisited(isAllow: boolean | null) {
     if (userId) {
@@ -188,7 +188,7 @@ export const useDatabase = () => {
   return {
     // readAllCountries,
     // writeUserCountries,
-    readUserCountries,
+    // readUserCountries,
     writeUserPermissionVisited,
     readUserPermissionVisited,
     writeUserName,

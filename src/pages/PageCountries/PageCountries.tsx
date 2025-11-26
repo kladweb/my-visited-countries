@@ -49,7 +49,7 @@ export const PageCountries = () => {
       dispatch(updateCurrentData({page: page, data: countries.data}));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, countries.data, favCountries.data]);
+  }, [page, countries.data, favCountries.userCountries]);
 
   return (
     <div className='CountryList'>

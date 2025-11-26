@@ -14,7 +14,7 @@ export const CountriesList = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const params = useParams();
-  const favCountries: string[] = useAppSelector((state: RootState) => state.favCountries.data);
+  const favCountries: string[] = useAppSelector((state: RootState) => state.favCountries.userCountries);
   const countriesObj = useAppSelector((state: RootState) => state.countries);
   const currUser = useAppSelector((state: RootState) => state.currUser.currUser);
   const userId = currUser ? currUser.id : null;
