@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { child, get, ref } from "firebase/database";
+import { child, get, ref, set } from "firebase/database";
 import { database } from "../firebase/firebase";
 
 interface IStateCountries {
@@ -24,12 +24,31 @@ export const fetchUserCountries = createAsyncThunk<
     const dbRef = ref(database);
     try {
       const snapshot = await get(child(dbRef, `users/${userId}/countries`));
-      return snapshot.exists() ? snapshot.val() : [];
+      return snapshot.exists() ? JSON.parse(snapshot.val()) : [];
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
       }
       return rejectWithValue("Ошибка загрузки данных из Firebase");
+    }
+  }
+);
+
+export const writeUserCountries = createAsyncThunk<
+  void,
+  { userId: string; countries: string },
+  { rejectValue: string }
+>(
+  "countries/writeUserCountries",
+  async ({userId, countries}, {rejectWithValue}) => {
+    try {
+      console.log("COUNTRIES: ", countries);
+      await set(ref(database, `users/${userId}/countries`), countries);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue("Ошибка сохранения данных в Firebase");
     }
   }
 );
@@ -51,6 +70,7 @@ export const favCountriesSlice = createSlice({
       })
       .addCase(fetchUserCountries.fulfilled, (state, action) => {
         state.favDataLoadState = "succeeded";
+        console.log("PAYLOAD: ", action.payload);
         state.userCountries = action.payload;
       })
       .addCase(fetchUserCountries.rejected, (state, action) => {

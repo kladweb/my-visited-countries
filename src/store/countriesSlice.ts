@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { ICountries } from "../types/globalTypes";
-import { child, get, ref, set } from "firebase/database";
+import { child, get, ref } from "firebase/database";
 import { database } from "../firebase/firebase";
 
 export type LoadState = "idle" | "loading" | "succeeded" | "failed";
@@ -46,24 +46,6 @@ export const fetchCountries = createAsyncThunk<ICountries[]>(
       return rejectWithValue(error.message || "Ошибка загрузки данных из Firebase");
     });
     return countries;
-  }
-);
-
-export const writeUserCountries = createAsyncThunk<
-  void,
-  { userId: string; countries: string },
-  { rejectValue: string }
->(
-  "countries/writeUserCountries",
-  async ({userId, countries}, {rejectWithValue}) => {
-    try {
-      await set(ref(database, `users/${userId}/countries`), countries);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        return rejectWithValue(error.message);
-      }
-      return rejectWithValue("Ошибка сохранения данных в Firebase");
-    }
   }
 );
 
