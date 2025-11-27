@@ -36,14 +36,13 @@ export const fetchUserCountries = createAsyncThunk<
 
 export const writeUserCountries = createAsyncThunk<
   void,
-  { userId: string; countries: string },
+  { userId: string; countries: string[] },
   { rejectValue: string }
 >(
   "countries/writeUserCountries",
   async ({userId, countries}, {rejectWithValue}) => {
     try {
-      console.log("COUNTRIES: ", countries);
-      await set(ref(database, `users/${userId}/countries`), countries);
+      await set(ref(database, `users/${userId}/countries`), JSON.stringify(countries));
     } catch (error: unknown) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);

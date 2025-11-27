@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { child, get, ref, set } from "firebase/database";
 import { database } from "../firebase/firebase";
 // import { updateFavData } from "../store/favCountriesSlice";
-import { setAllowShowVisited, setUserName, setUserPhoto, setUserUID } from "../store/loginUsersSlice";
+import { setAllowShowVisited, setUserPhoto, setUserUID } from "../store/loginUsersSlice";
 import { type IAllUserCountries, updateAllUsersCountries } from "../store/allUsersCountriesSlice";
 import { type AppDispatch, type RootState } from "../store/store";
 // import { updateCurrentData, updateData, updateLoadState } from "../store/countriesSlice";
@@ -13,53 +13,7 @@ export const useDatabase = () => {
   const userId = currUser ? currUser.id : null;
   const userUID = currUser ? currUser.uid : null;
 
-  // function writeUserCountries(countries: string | null) {
-  //   console.log("USER ID: ", userId);
-  //   if (userId) {
-  //     set(ref(database, `users/${userId}/countries`), countries);
-  //   } else {
-  //     console.log('No auth !');
-  //   }
-  // }
 
-  // function readAllCountries(dispatch: AppDispatch) {
-  //   dispatch(updateLoadState({state: 1, error: null}));
-  //   const dbRef = ref(database);
-  //   get(child(dbRef, 'countries')).then((snapshot) => {
-  //     if (snapshot.exists()) {
-  //       const data = snapshot.val();
-  //       dispatch(updateLoadState({state: 2, error: null}));
-  //       dispatch(updateData(data));
-  //       dispatch(updateCurrentData({data: data}));
-  //     } else {
-  //       console.log("No data available");
-  //       dispatch(updateLoadState({state: 3, error: 'No data available'}));
-  //     }
-  //   }).catch((error) => {
-  //     dispatch(updateLoadState({state: 3, error: 'HTTP error ' + error}));
-  //     console.error(error);
-  //   });
-  // }
-
-  // async function readUserCountries(dispatch: AppDispatch) {
-  //   if (userId) {
-  //     const dbRef = ref(database);
-  //     await get(child(dbRef, `users/${userId}/countries`)).then((snapshot) => {
-  //       if (snapshot.exists()) {
-  //         const dataString = snapshot.val();
-  //         const data = (dataString === null) ? [] : JSON.parse(dataString);
-  //         dispatch(updateFavData(data));
-  //       } else {
-  //         console.log("No data available");
-  //         dispatch(updateFavData([]));
-  //       }
-  //     }).catch((error) => {
-  //       console.error(error);
-  //     });
-  //   } else {
-  //     console.log('No auth !');
-  //   }
-  // }
 
   function writeUserPermissionVisited(isAllow: boolean | null) {
     if (userId) {
@@ -87,27 +41,27 @@ export const useDatabase = () => {
     }
   }
 
-  function writeUserName(userName: string) {
-    if (userId) {
-      set(ref(database, `users/${userId}/userName/`), userName);
-    } else {
-      console.log('No auth !');
-    }
-  }
-
-  function readUserName(dispatch: AppDispatch) {
-    if (userId) {
-      const dbRef = ref(database);
-      get(child(dbRef, `users/${userId}/userName`)).then((snapshot) => {
-        if (snapshot.exists()) {
-          const userName = snapshot.val();
-          dispatch(setUserName(userName));
-        } else {
-          dispatch(setUserName(''));
-        }
-      });
-    }
-  }
+  // function writeUserName(userName: string) {
+  //   if (userId) {
+  //     set(ref(database, `users/${userId}/userName/`), userName);
+  //   } else {
+  //     console.log('No auth !');
+  //   }
+  // }
+  //
+  // function readUserName(dispatch: AppDispatch) {
+  //   if (userId) {
+  //     const dbRef = ref(database);
+  //     get(child(dbRef, `users/${userId}/userName`)).then((snapshot) => {
+  //       if (snapshot.exists()) {
+  //         const userName = snapshot.val();
+  //         dispatch(setUserName(userName));
+  //       } else {
+  //         dispatch(setUserName(''));
+  //       }
+  //     });
+  //   }
+  // }
 
   function writeUserUID(userUID: string) {
     if (userId) {
@@ -191,8 +145,8 @@ export const useDatabase = () => {
     // readUserCountries,
     writeUserPermissionVisited,
     readUserPermissionVisited,
-    writeUserName,
-    readUserName,
+    // writeUserName,
+    // readUserName,
     writeUserPhoto,
     readUserPhoto,
     readUserUID,

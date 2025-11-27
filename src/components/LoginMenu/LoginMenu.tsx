@@ -5,10 +5,11 @@ import { Avatar } from "../Avatar/Avatar";
 import './loginMenu.scss';
 import { type ICurrUser } from "../../types/globalTypes";
 import { fetchUserCountries } from "../../store/favCountriesSlice.ts";
+import { readUserName } from "../../store/loginUsersSlice.ts";
 
 export const LoginMenu = () => {
   const dispatch = useAppDispatch();
-  const {readUserPermissionVisited, readUserName, readUserPhoto, readUserUID} = useDatabase();
+  const {readUserPermissionVisited, readUserPhoto, readUserUID} = useDatabase();
   const currUser: ICurrUser | null = useAppSelector(state => state.currUser.currUser);
   const userName = useAppSelector(state => state.currUser.userName);
   const currUserName = (currUser) ? (userName ? userName : currUser.displayName) : '';
@@ -18,7 +19,7 @@ export const LoginMenu = () => {
       if (currUser) {
         dispatch(fetchUserCountries({userId: currUser.id}));
         readUserPermissionVisited(dispatch);
-        readUserName(dispatch);
+        dispatch(readUserName({userId: currUser.id}));
         readUserPhoto(dispatch);
         readUserUID(dispatch);
       }
