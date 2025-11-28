@@ -2,11 +2,11 @@ import React, { type RefObject, useLayoutEffect, useRef, useState } from "react"
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Country from './Country.tsx';
 import { setOpenInfoBar } from "../../store/isOpenInfoBarSlice";
-import { updateFavData } from "../../store/favCountriesSlice";
+// import { updateFavData } from "../../store/favCountriesSlice";
 import { type RootState, useAppDispatch, useAppSelector } from "../../store/store";
 import type { ICountries } from "../../types/globalTypes";
 import { GlobeCountries } from "../../components/GlobeCountries/GlobeCountries.tsx";
-import { writeUserCountries } from "../../store/countriesSlice.ts";
+import { updateFavData, writeUserCountries } from "../../store/favCountriesSlice";
 // import { useDatabase } from "../../api/database.ts";
 // import { loginUserSlice } from "../../store/loginUsersSlice.ts";
 
@@ -14,7 +14,7 @@ export const CountriesList = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const params = useParams();
-  const favCountries: string[] = useAppSelector((state: RootState) => state.favCountries.data);
+  const favCountries: string[] = useAppSelector((state: RootState) => state.favCountries.userCountries);
   const countriesObj = useAppSelector((state: RootState) => state.countries);
   const currUser = useAppSelector((state: RootState) => state.currUser.currUser);
   const userId = currUser ? currUser.id : null;
@@ -67,11 +67,10 @@ export const CountriesList = () => {
       } else {
         newData.push(code);
       }
-      dispatch(updateFavData(newData));
+      // dispatch(updateFavData(newData));
       if (userId) {
-        console.log("ПРОВЕРКА JSON: ", JSON.stringify(newData));
-        console.log("USER ID: ", userId);
-        dispatch(writeUserCountries({userId, countries: JSON.stringify(newData)}));
+        dispatch(updateFavData(newData));
+        dispatch(writeUserCountries({userId, countries: newData}));
       }
     } else {
       navigate('/login');

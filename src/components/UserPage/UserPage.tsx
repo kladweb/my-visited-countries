@@ -4,6 +4,7 @@ import { useDatabase } from "../../api/database";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { setAllowShowVisited } from "../../store/loginUsersSlice";
 import { InputName } from "../InputName/InputName";
+import { updateData } from "../../store/countriesSlice";
 import './userPage.scss';
 
 interface IUserPageProps {
@@ -14,7 +15,7 @@ interface IUserPageProps {
 export const UserPage: React.FC<IUserPageProps> = ({logoutGoogle, userName}) => {
   const {readAllUsers} = useDatabase();
   const dispatch = useAppDispatch();
-  const {writeUserPermissionVisited, writeUserCountries} = useDatabase();
+  const {writeUserPermissionVisited} = useDatabase();
   const isAllowed = useAppSelector(state => state.currUser.isAllowShowVisited);
 
   const [isShowMod, setShowMod] = useState(false);
@@ -38,7 +39,7 @@ export const UserPage: React.FC<IUserPageProps> = ({logoutGoogle, userName}) => 
   }
 
   const deleteUserData = () => {
-    writeUserCountries(null);
+    dispatch(updateData(null));
     writeUserPermissionVisited(null);
     // deleteUserFromApp(); //TODO add this case in future
   }

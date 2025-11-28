@@ -15,7 +15,7 @@ interface IClassObj {
 
 export const PagesLinks = () => {
   const dispatch = useAppDispatch();
-  const favCountries = useAppSelector(state => state.favCountries.data);
+  const favCountries = useAppSelector(state => state.favCountries.userCountries);
   const countFav = (favCountries) ? favCountries.length : 0;
 
   useEffect(

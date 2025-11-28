@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import { PageMain } from '../pages/PageMain/PageMain.tsx';
 import { PageCountries } from '../pages/PageCountries/PageCountries.tsx';
 import { CountryInfoBar } from '../pages/CountryInfoBar/CountryInfoBar.tsx';
+// import { PageTravelers } from "../pages/PageTravelers/PageTravelers.tsx";
+
 
 const PageLoginLogout = lazy(() => import("../pages/PageLoginLogout/PageLoginLogout.tsx")
   .then((module) => ({default: module.PageLoginLogout})));
