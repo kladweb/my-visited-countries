@@ -81,10 +81,10 @@ export const CountriesList = () => {
     if (params.countid && params.countid === code) {
       dispatch(setOpenInfoBar('close'));
     } else {
+      navigate(`/countries/${page}/` + code);
       if (!params.countid) {
         dispatch(setOpenInfoBar('open'));
       }
-      navigate(`/countries/${page}/` + code);
     }
   }
 
