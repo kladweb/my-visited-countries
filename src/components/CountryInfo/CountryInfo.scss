@@ -15,11 +15,12 @@
 
 .show {
   animation: show-info 500ms ease-in-out;
+  //animation-fill-mode: forwards;
 }
 
 @keyframes show-info {
   from {
-    transform: translateY(100%);
+    transform: translateY(95%);
   }
   to {
     transform: translateY(0);
@@ -28,6 +29,7 @@
 
 .hide {
   animation: hide-info 500ms ease-in-out;
+  animation-fill-mode: forwards;
 }
 
 @keyframes hide-info {
