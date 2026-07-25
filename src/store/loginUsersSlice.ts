@@ -91,7 +91,6 @@ export const loginUserSlice = createSlice({
       })
       .addCase(readUserName.fulfilled, (state, action) => {
         state.userNameLoadState = "succeeded";
-        console.log("PAYLOAD: ", action.payload);
         state.userName = action.payload;
       })
       .addCase(readUserName.rejected, (state, action) => {
