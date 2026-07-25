@@ -9,7 +9,7 @@ export const CountryInfo: React.FC<ICountries> = ({code, name, capital, populati
   const page = params.part;
   const navigate = useNavigate();
   const isOpenInfoBar = useAppSelector(state => state.openInfoBar.isOpenInfoBar);
-  console.log(isOpenInfoBar)
+
   //make indents between thousandths:
   const people = population.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
   const square = area.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');

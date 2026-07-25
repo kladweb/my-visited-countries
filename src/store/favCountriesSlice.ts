@@ -69,7 +69,6 @@ export const favCountriesSlice = createSlice({
       })
       .addCase(fetchUserCountries.fulfilled, (state, action) => {
         state.favDataLoadState = "succeeded";
-        console.log("PAYLOAD: ", action.payload);
         state.userCountries = action.payload;
       })
       .addCase(fetchUserCountries.rejected, (state, action) => {
