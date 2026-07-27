@@ -12,8 +12,8 @@ const PageLoginLogout = lazy(() => import("../pages/PageLoginLogout/PageLoginLog
 const PageTravelers = lazy(() => import("../pages/PageTravelers/PageTravelers.tsx")
   .then((module) => ({default: module.PageTravelers})));
 
-const PageAbout = lazy(() => import("../pages/PageAbout/PageAbout.tsx")
-  .then((module) => ({default: module.PageAbout})));
+// const PageAbout = lazy(() => import("../pages/PageAbout/PageAbout.tsx")
+//   .then((module) => ({default: module.PageAbout})));
 
 const CountriesList = lazy(() => import("../pages/CountriesList/CountriesList")
   .then((module) => ({default: module.CountriesList})));
@@ -28,7 +28,7 @@ export const PagesRouter = () => {
             <Route path=":countid" element={<CountryInfoBar/>}/>
           </Route>
         </Route>
-        <Route path="/about" element={<PageAbout/>}/>
+        {/*<Route path="/about" element={<PageAbout/>}/>*/}
         <Route path="/travelers" element={<PageTravelers/>}/>
         <Route path="/login" element={<PageLoginLogout/>}/>
       </Routes>

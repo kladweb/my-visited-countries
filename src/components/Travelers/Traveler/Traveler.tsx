@@ -10,7 +10,7 @@ interface ITravelerProps {
 
 export const Traveler: React.FC<ITravelerProps> = ({userName, userUrl, countries}) => {
 
-  const countriesList = countries.map((country: ICountriesCodesNames, index) => (
+  const countriesList = countries.map((country: ICountriesCodesNames) => (
     <div key={country.code} className="traveler-country">
       <img
         className="traveler-country-img"

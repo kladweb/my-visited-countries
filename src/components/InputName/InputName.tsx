@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDatabase } from "../../api/database";
+// import { useDatabase } from "../../api/database";
 import { setUserName } from "../../store/loginUsersSlice";
 import { useAppDispatch } from "../../store/store";
 import './inputName.scss';
@@ -12,7 +12,7 @@ interface InputNameProps {
 
 export const InputName: React.FC<InputNameProps> = ({userName, setInput}) => {
   const dispatch = useAppDispatch();
-  const {writeUserName} = useDatabase();
+  // const {writeUserName} = useDatabase();
   const [name, setName] = useState<string>(userName);
 
   const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ export const InputName: React.FC<InputNameProps> = ({userName, setInput}) => {
   const saveName = () => {
     setInput(false);
     if (name !== "") {
-      writeUserName(name);
+      // writeUserName(name);
       dispatch(setUserName(name));
     }
   }

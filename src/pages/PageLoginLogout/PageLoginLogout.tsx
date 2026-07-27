@@ -15,14 +15,15 @@ import { UserPage } from "../../components/UserPage/UserPage.tsx";
 export const PageLoginLogout = () => {
   type User = firebase.User;
   const dispatch = useAppDispatch();
-  const {writeUserName, writeUserPhoto} = useDatabase();
+  // const {writeUserName, writeUserPhoto} = useDatabase();
+  const {writeUserPhoto} = useDatabase();
   const currUser = useAppSelector(state => state.currUser.currUser);
   const userName = useAppSelector(state => state.currUser.userName);
   const provider = new GoogleAuthProvider();
 
   useEffect(() => {
     if (currUser && userName === '') {
-      writeUserName(currUser.displayName);
+      // writeUserName(currUser.displayName);
       dispatch(setUserName(currUser.displayName));
     }
     if (currUser) {
